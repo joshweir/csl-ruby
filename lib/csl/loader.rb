@@ -32,7 +32,7 @@ module CSL
     end
 
     def list
-      Dir.glob("#{root}/**/#{prefix}*#{extension}").map do |path|
+      Dir["#{root}/**/#{prefix}*#{extension}"].map do |path|
         style_relative_to_root path
       end
     end
