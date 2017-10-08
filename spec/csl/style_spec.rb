@@ -133,5 +133,16 @@ module CSL
         end
       end
     end
+
+    describe ".list" do
+      it 'lists files recursively' do
+        #Dir["#{root}/**/#{prefix}*#{extension}"]
+        expect(Dir)
+            .to receive(:glob)
+                    .with("#{CSL::Style.root}/**/#{CSL::Style.prefix}*#{CSL::Style.extension}")
+                    .and_return(["#{CSL::Style.root}/apa","#{CSL::Style.root}/bpa"])
+        expect(CSL::Style.ls).to eq ['dependent/apa-dependent', 'apa']
+      end
+    end
   end
 end

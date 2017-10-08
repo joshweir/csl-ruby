@@ -32,8 +32,8 @@ module CSL
     end
 
     def list
-      Dir["#{root}/#{prefix}*#{extension}"].map do |path|
-        File.basename(path, extension).sub(/^#{prefix}/, '')
+      Dir.glob("#{root}/**/#{prefix}*#{extension}").map do |path|
+        style_relative_to_root path
       end
     end
     alias ls list
@@ -60,6 +60,12 @@ module CSL
     end
 
     private
+
+    def style_relative_to_root(path)
+      File.join(File.dirname(path).sub(/^(#{root}){1}/,''),
+                File.basename(path, extension).sub(/^#{prefix}/, ''))
+          .sub(/^\/{0,1}/,'')
+    end
 
     def extract_data_from(input)
       case
