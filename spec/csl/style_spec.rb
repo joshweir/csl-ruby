@@ -138,11 +138,11 @@ module CSL
       it 'lists files recursively' do
         expect(Dir)
             .to receive(:"[]")
-                    .with("#{CSL::Style.root}/**/#{CSL::Style.prefix}*" +
-                              "#{CSL::Style.extension}")
-                    .and_return(["#{CSL::Style.root}/dependent/apa-dependent.csl",
-                                 "#{CSL::Style.root}/apa.csl"])
-        expect(CSL::Style.ls).to eq ['dependent/apa-dependent', 'apa']
+                    .with("#{Style.root}/**/#{Style.prefix}*" +
+                              "#{Style.extension}")
+                    .and_return(["#{Style.root}/dependent/apa-dependent.csl",
+                                 "#{Style.root}/apa.csl"])
+        expect(Style.ls).to eq ['dependent/apa-dependent', 'apa']
       end
     end
   end
